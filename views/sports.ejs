@@ -1,0 +1,9 @@
+<!-- views/sports.ejs -->
+<h1>Liste des sports</h1>
+<ul>
+  <% sports.forEach(sport => { %>
+    <form action="/events/<%= sport.id %>" method="get">
+      <button type="submit"><%= sport.name %></button>
+    </form>
+  <% }); %>
+</ul>

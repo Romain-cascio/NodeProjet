@@ -1,0 +1,49 @@
+<!-- Dans votre fichier EJS (par exemple, events.ejs) -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des événements</title>
+
+    <!-- Inclure Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+
+<body>
+    <h1>Liste des événements</h1>
+    <ul>
+        <% events.forEach(event => { %>
+        <li>
+            <%= event.name %> - <%= event.date %> - <%= event.location %>
+            <!-- Ajoutez le conteneur pour la carte -->
+            <div id="map_<%= event.id %>" style="height: 100px;"></div>
+
+            <!-- Script pour afficher la carte -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Coordonnées de l'emplacement (à remplacer par les données de votre base de données)
+                    var location_<%= event.id %> = [<%= event.latitude %>, <%= event.longitude %>];
+
+                    // Créez une instance de la carte
+                    var map_<%= event.id %> = L.map('map_<%= event.id %>').setView(location_<%= event.id %>, 13);
+
+                    // Ajoutez une couche de carte (vous pouvez utiliser d'autres fournisseurs de tuiles)
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '© OpenStreetMap contributors'
+                    }).addTo(map_<%= event.id %>);
+
+                    // Ajoutez un marqueur pour l'emplacement
+                    L.marker(location_<%= event.id %>).addTo(map_<%= event.id %>)
+                        .bindPopup('Emplacement de l\'événement: <%= event.name %>')
+                        .openPopup();
+                });
+            </script>
+        </li>
+        <% }); %>
+    </ul>
+</body>
+
+</html>

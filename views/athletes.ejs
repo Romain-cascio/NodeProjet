@@ -1,0 +1,7 @@
+<!-- views/athletes.ejs -->
+<h1>Liste des athlètes</h1>
+<ul>
+  <% athletes.forEach(athlete => { %>
+    <li><%= athlete.firstName %> <%= athlete.lastName %> - <%= athlete.age %> ans</li>
+  <% }); %>
+</ul>

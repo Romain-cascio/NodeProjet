@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "root",
+    "password": "root",
+    "database": "olympics_dev",
+    "host": "database",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "test_user",
+    "password": "test_password",
+    "database": "olympics_test",
+    "host": "localhost",
+    "dialect": "mysql",
+    "operatorsAliases": 0
+  },
+  "production": {
+    "username": "prod_user",
+    "password": "prod_password",
+    "database": "olympics_prod",
+    "host": "your_production_host",
+    "dialect": "mysql",
+    "operatorsAliases": 0
+  }
+}
